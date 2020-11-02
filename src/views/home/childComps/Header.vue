@@ -7,7 +7,7 @@
       <div class="iconfont">&#xe610;输入城市/景点/游玩主题</div>
     </div>
     <div class="header-right">
-      <div class="iconfont">城市&#xe627;</div>
+      <div class="iconfont" @click="cityclick">{{this.$store.state.city}}&#xe627;</div>
     </div>
   </div>
 </template>
@@ -15,6 +15,11 @@
 <script>
 export default {
   name: "Header",
+  methods:{
+    cityclick() {
+      this.$router.replace('/citys')
+    }
+  }
 };
 </script>
 <style scoped>
@@ -46,6 +51,7 @@ export default {
 .header-right {
   text-align: center;
   color: #fff;
-  width: 1.24rem;
+  min-width: 1.04rem;
+  padding-left: .1rem;
 }
 </style>
