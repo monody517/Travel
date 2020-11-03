@@ -12,6 +12,7 @@ import './assets/css/reset.css'
 import './assets/css/border.css'
 import './assets/img/common/back/iconfont.css'
 import './assets/img/home/down/iconfont.css'
+import './assets/img/detail/img/iconfont.css'
 
 
 Vue.config.productionTip = false

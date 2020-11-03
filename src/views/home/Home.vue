@@ -1,11 +1,13 @@
 <!--  -->
 <template>
-  <div>
+  <div class="home">
     <Header></Header>
-    <HomeSwiper :SwiperList="SwiperList"></HomeSwiper>
-    <HomeIcons :iconList="IconList"></HomeIcons>
-    <HomeRecommend :RecommendList="RecommendList"></HomeRecommend>
-    <Week :WeekendList="WeekendList"></Week>
+    <Scroll class="content" ref="scroll" :probe-type="3">
+      <HomeSwiper :SwiperList="SwiperList"></HomeSwiper>
+      <HomeIcons :iconList="IconList"></HomeIcons>
+      <HomeRecommend :RecommendList="RecommendList"></HomeRecommend>
+      <Week :WeekendList="WeekendList"></Week>
+    </Scroll>
   </div>
 </template>
 
@@ -16,13 +18,14 @@ import HomeIcons from "./childComps/Icons";
 import HomeRecommend from "./childComps/Recommend";
 import Week from "./childComps/week";
 import axios from "axios";
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
+import Scroll from "../../components/scroll/Scroll";
 
 export default {
   name: "Home",
   data() {
     return {
-      lastCity:'',
+      lastCity: "",
       SwiperList: [],
       IconList: [],
       RecommendList: [],
@@ -35,9 +38,10 @@ export default {
     HomeIcons,
     HomeRecommend,
     Week,
+    Scroll,
   },
   computed: {
-    ...mapState(['city'])
+    ...mapState(["city"]),
   },
   methods: {
     getHomeInfo() {
@@ -52,17 +56,29 @@ export default {
     },
   },
   mounted() {
-    this.lastCity = this.city
+    this.lastCity = this.city;
     this.getHomeInfo();
   },
   activated() {
-    console.log('a')
-    if(this.lastCity !== this.city){
-       this.lastCity = this.city
+    console.log("a");
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city;
       this.getHomeInfo();
     }
-  }
+  },
 };
 </script>
 <style scoped>
+.home {
+  height: 100vh;
+  position: relative;
+}
+.content {
+  position: absolute;
+  top: .86rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
 </style>
